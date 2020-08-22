@@ -20,7 +20,7 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "???"
+__author__ = "Wesley Salesberry"
 
 
 import random
@@ -28,38 +28,52 @@ import sys
 
 
 def create_mimic_dict(filename):
-    """Returns a dict mapping each word to a list of words which follow it.
-    For example:
-        Input: "I am a software developer, and I don't care who knows"
-        Output:
-            {
-                "" : ["I"],
-                "I" : ["am", "don't"],
-                "am": ["a"],
-                "a": ["software"],
-                "software" : ["developer,"],
-                "developer," : ["and"],
-                "and" : ["I"],
-                "don't" : ["care"],
-                "care" : ["who"],
-                "who" : ["knows"]
-            }
-    """
-    # +++your code here+++
-    pass
+    word_list = {}
+    with open(filename) as f:
+        line = f.read()
+        words = line.split()
+
+    words_length = len(words)
+
+    for element in range(words_length - 1):
+        if words[element] not in word_list:
+            word_list[words[element]] = [words[element + 1]]
+        else:
+            word_list[words[element]].append(words[element+1])
+        continue
+    word_list[''] = [words[0]]
+
+    return word_list
 
 
 def print_mimic_random(mimic_dict, num_words):
     """Given a previously created mimic_dict and num_words,
     prints random words from mimic_dict as follows:
-        - Use a start_word of '' (empty string)
-        - Print the start_word
+        X Use a start_word of '' (empty string)
+        X Print the start_word
         - Look up the start_word in your mimic_dict and get its next-list
         - Randomly select a new word from the next-list
         - Repeat this process num_words times
     """
-    # +++your code here+++
-    pass
+    # +++your code here++
+    start_word = ''
+
+    random_words = random.sample(list(mimic_dict), num_words)
+    words = " ".join(random_words)
+
+    print(words)
+    # while list_len < num_words:
+    #     if random_words:
+    #         random_word = random.sample(list(mimic_dict), 50)
+    #         random_words.append(random_word)
+
+    #     else:
+    #         start_word = ''
+
+    # for element in mimic_dict:
+    #     if len(mimic_words) < num_words:
+    #         if element in mimic_dict:
+    #             print(element)
 
 
 def main(args):
