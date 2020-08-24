@@ -56,24 +56,16 @@ def print_mimic_random(mimic_dict, num_words):
         - Repeat this process num_words times
     """
     # +++your code here++
-    start_word = ''
+    # random_words = random.sample(list(mimic_dict), num_words)
+    # words = " ".join(random_words)
 
-    random_words = random.sample(list(mimic_dict), num_words)
-    words = " ".join(random_words)
+    word = [mimic_dict[''][0]]
 
-    print(words)
-    # while list_len < num_words:
-    #     if random_words:
-    #         random_word = random.sample(list(mimic_dict), 50)
-    #         random_words.append(random_word)
-
-    #     else:
-    #         start_word = ''
-
-    # for element in mimic_dict:
-    #     if len(mimic_words) < num_words:
-    #         if element in mimic_dict:
-    #             print(element)
+    for _ in range(num_words - 1):
+        value_word = mimic_dict.get(word[-1], mimic_dict[''][0])
+        next_word = random.choice(value_word)
+        word.append(next_word)
+    print(" ".join(word), end=" ")
 
 
 def main(args):
