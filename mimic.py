@@ -65,6 +65,7 @@ def print_mimic_random(mimic_dict, num_words):
         value_word = mimic_dict.get(word[-1], mimic_dict[''][0])
         next_word = random.choice(value_word)
         word.append(next_word)
+
     print(" ".join(word), end=" ")
 
 
